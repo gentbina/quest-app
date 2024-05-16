@@ -1,7 +1,7 @@
 resource "aws_security_group" "ecs_security_group" {
   name        = "ecs_security_group"
   description = "Allow traffic on the desired ports"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 3000
@@ -21,7 +21,7 @@ resource "aws_security_group" "ecs_security_group" {
 resource "aws_security_group" "alb_security_group" {
   name        = "alb_security_group"
   description = "Allow HTTP and HTTPS traffic"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 80

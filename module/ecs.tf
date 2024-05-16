@@ -10,6 +10,11 @@ resource "aws_ecs_task_definition" "app" {
   memory                   = var.ecs_task_memory
   execution_role_arn       = var.ecs_execution_role_arn
 
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "ARM64"
+  }
+
   container_definitions = jsonencode([
     {
       name      = var.container_name
@@ -32,7 +37,7 @@ resource "aws_ecs_service" "app" {
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
   network_configuration {
-    subnets          = data.aws_subnets.default.ids
+    subnets          = aws_subnet.main[*].id
     security_groups  = [aws_security_group.ecs_security_group.id]
     assign_public_ip = true
   }

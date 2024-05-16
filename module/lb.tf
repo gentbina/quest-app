@@ -3,14 +3,14 @@ resource "aws_lb" "app" {
   internal           = var.lb_internal
   load_balancer_type = var.lb_type
   security_groups    = [aws_security_group.alb_security_group.id]
-  subnets            = data.aws_subnets.default.ids
+  subnets            = aws_subnet.main[*].id
 }
 
 resource "aws_lb_target_group" "app" {
   name        = var.lb_target_group_name
   port        = var.lb_target_group_port
   protocol    = var.lb_target_group_protocol
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = aws_vpc.main.id
   target_type = var.lb_target_type
   health_check {
     path                = "/"
