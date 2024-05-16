@@ -65,3 +65,20 @@ The architecture of the deployed resources includes:
 |     (Public Subnets)   |
 +------------------------+
 ```
+## Notes
+The node js app has been containerized and pushed into a private repository in ECR
+```
+FROM node:16
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
