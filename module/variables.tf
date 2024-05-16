@@ -21,7 +21,6 @@ variable "ecs_task_memory" {
 variable "ecs_execution_role_arn" {
   description = "ARN of the execution role for ECS tasks"
   type        = string
-  default     = "arn:aws:iam::191600387477:role/ecsTaskExecutionRole"
 }
 
 variable "container_name" {
@@ -45,6 +44,15 @@ variable "host_port" {
   type        = number
 }
 
+variable "secret_word" {
+  description = "Secret Word Env variable"
+  type        = string
+}
+
+variable "secret_word_value" {
+  description = "Secret Word Value"
+  type        = string
+}
 variable "ecs_service_name" {
   description = "Name of the ECS service"
   type        = string
@@ -75,13 +83,12 @@ variable "lb_type" {
 variable "lb_target_group_name" {
   description = "Name of the load balancer target group"
   type        = string
-  default     = "app-tg"
+
 }
 
 variable "lb_target_group_port" {
   description = "Port of the load balancer target group"
   type        = number
-  default     = 80
 }
 
 variable "lb_target_group_protocol" {
@@ -99,7 +106,6 @@ variable "lb_target_type" {
 variable "lb_listener_port" {
   description = "Port for the load balancer listener"
   type        = number
-  default     = 80
 }
 
 variable "lb_listener_protocol" {
@@ -117,7 +123,6 @@ variable "lb_listener_action_type" {
 variable "lb_listener_port_https" {
   description = "Port for the load balancer listener"
   type        = number
-  default     = 80
 }
 
 variable "lb_listener_protocol_https" {
@@ -135,5 +140,4 @@ variable "lb_listener_action_type_https" {
 variable "domain_name" {
   description = "The domain name to use in Route 53."
   type        = string
-  default     = "test.gentbina.com"
 }

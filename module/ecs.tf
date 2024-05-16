@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "app" {
 
   runtime_platform {
     operating_system_family = "LINUX"
-    cpu_architecture        = "ARM64"
+    cpu_architecture        = "X86_64"
   }
 
   container_definitions = jsonencode([
@@ -24,6 +24,12 @@ resource "aws_ecs_task_definition" "app" {
         {
           containerPort = var.container_port
           hostPort      = var.host_port
+        }
+      ]
+      environment = [
+        {
+          name  = var.secret_word
+          value = var.secret_word_value
         }
       ]
     }

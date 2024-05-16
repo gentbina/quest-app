@@ -8,9 +8,11 @@ module "quest-app" {
   ecs_task_memory        = "2048"
   ecs_execution_role_arn = "arn:aws:iam::191600387477:role/ecsTaskExecutionRole"
   container_name         = "quest-app"
-  container_image        = "public.ecr.aws/o6p3b5i6/quest-app:latest"
+  container_image        = "191600387477.dkr.ecr.us-east-1.amazonaws.com/quest-app:latest"
   container_port         = "3000"
   host_port              = "3000"
+  secret_word            = "SECRET_WORD"
+  secret_word_value      = "TwelveFactor"
   ecs_service_name       = "quest-app-service"
   desired_count          = "2"
 
