@@ -41,6 +41,10 @@ module "quest-app" {
   ]
 
   #IAM
+  role_name = "ecsTaskExecutionRole"
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+  ]
 
   #Route53 and ACM
   domain_name             = "test.gentbina.com"
