@@ -1,4 +1,4 @@
-# ECS Variables
+#================================ECS================================
 variable "ecs_cluster_name" {
   description = "Name of the ECS cluster"
   type        = string
@@ -84,8 +84,7 @@ variable "lb_name" {
   description = "Name of the load balancer"
   type        = string
 }
-#===========================================================================
-#Load Balancer
+#================================Load Balancer================================
 variable "lb_internal" {
   description = "Whether the load balancer is internal"
   type        = bool
@@ -165,8 +164,7 @@ variable "domain_name" {
   description = "The domain name to use in Route 53."
   type        = string
 }
-#===========================================================================
-#ACM and R53
+#================================ACM and R53================================
 variable "validation_method" {
   description = "Validation method for acm certificate"
   type        = string
@@ -187,8 +185,7 @@ variable "r53_cert_validation_ttl" {
   description = "Route53 cert validation TTL"
   type        = number
 }
-#===========================================================================
-#IAM
+#================================IAM=========================================
 variable "role_name" {
   description = "The name of the IAM role"
   type        = string
@@ -197,8 +194,7 @@ variable "managed_policy_arns" {
   description = "List of managed policy ARNs to attach to the IAM role"
   type        = list(string)
 }
-#===========================================================================
-#Providers
+#================================Providers=========================================
 variable "region" {
   description = "The AWS region to use"
   type        = string
@@ -212,8 +208,7 @@ variable "account_id" {
   description = "Account ID in AWS"
   type        = number
 }
-#===========================================================================
-#Security Groups
+#================================Security Groups====================================
 variable "ecs_sg_name" {
   description = "Name of the ECS Security Group"
   type        = string
@@ -249,8 +244,7 @@ variable "egress_rules" {
     cidr      = string
   }))
 }
-#===========================================================================
-#VPC
+#================================VPC===========================================
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"
   type        = string
