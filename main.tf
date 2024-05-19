@@ -11,33 +11,60 @@ module "quest-app" {
   container_image        = "191600387477.dkr.ecr.us-east-1.amazonaws.com/quest-app:latest"
   container_port         = "3000"
   host_port              = "3000"
-  secret_word            = "SECRET_WORD"
-  secret_word_value      = "TwelveFactor"
+  env_variable           = "SECRET_WORD"
+  env_variable_value     = "TwelveFactor"
   ecs_service_name       = "quest-app-service"
   desired_count          = "2"
+  assing_public_ip       = true
 
   #Load Balancer
-  lb_name                       = "quest-app-lb"
-  lb_internal                   = "false"
-  lb_type                       = "application"
-  lb_target_group_name          = "quest-app-tg"
-  lb_target_group_port          = "3000"
-  lb_target_group_protocol      = "HTTP"
-  lb_target_type                = "ip"
-  lb_listener_port              = "80"
-  lb_listener_protocol          = "HTTP"
-  lb_listener_action_type       = "redirect"
-  lb_listener_port_https        = "443"
-  lb_listener_protocol_https    = "HTTPS"
-  lb_listener_action_type_https = "forward"
+  lb_name              = "quest-app-lb"
+  lb_target_group_name = "quest-app-tg"
+  lb_target_group_port = "3000"
+  lb_target_type       = "ip"
 
   #Security Groups
+  ecs_sg_name = "ecs_security_group"
+  alb_sg_name = "alb_security_group"
+
+  ecs_ingress_ports = [
+    { from_port = 3000, to_port = 3000, protocol = "tcp", cidr = "0.0.0.0/0" }
+  ]
+
+  alb_ingress_ports = [
+    { from_port = 80, to_port = 80, protocol = "tcp", cidr = "0.0.0.0/0" },
+    { from_port = 443, to_port = 443, protocol = "tcp", cidr = "0.0.0.0/0" }
+  ]
+
+  egress_rules = [
+    { from_port = 0, to_port = 0, protocol = "-1", cidr = "0.0.0.0/0" }
+  ]
 
   #IAM
 
   #Route53 and ACM
-  domain_name = "test.gentbina.com"
+  domain_name             = "test.gentbina.com"
+  zone_id                 = "ZFAKQT1VB7ZSE"
+  validation_method       = "DNS"
+  record_type             = "A"
+  evaluate_target_health  = true
+  r53_cert_validation_ttl = 60
 
+  #Providers Block
+  region           = "us-east-1"
+  account_id       = 191600387477
+  deploy_role_name = "terraform-deploy"
 
+  #VPC
+  vpc_cidr = "10.0.0.0/16"
 
+  subnet_cidrs = [
+    "10.0.0.0/24",
+    "10.0.1.0/24"
+  ]
+
+  availability_zones = [
+    "us-east-1a",
+    "us-east-1b"
+  ]
 }

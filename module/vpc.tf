@@ -1,15 +1,18 @@
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr
 }
+
 resource "aws_subnet" "main" {
-  count             = 2
+  count             = length(var.subnet_cidrs)
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.${count.index}.0/24"
-  availability_zone = element(["us-east-1a", "us-east-1b"], count.index)
+  cidr_block        = var.subnet_cidrs[count.index]
+  availability_zone = var.availability_zones[count.index]
 }
+
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 }
+
 resource "aws_route_table" "main" {
   vpc_id = aws_vpc.main.id
 
@@ -18,19 +21,9 @@ resource "aws_route_table" "main" {
     gateway_id = aws_internet_gateway.main.id
   }
 }
+
 resource "aws_route_table_association" "a" {
-  count          = 2
-  subnet_id      = element(aws_subnet.main[*].id, count.index)
+  count          = length(var.subnet_cidrs)
+  subnet_id      = aws_subnet.main[count.index].id
   route_table_id = aws_route_table.main.id
 }
-
-# data "aws_vpc" "default" {
-#   default = true
-# }
-
-# data "aws_subnets" "default" {
-#   filter {
-#     name   = "vpc-id"
-#     values = [data.aws_vpc.default.id]
-#   }
-# }
