@@ -165,10 +165,6 @@ variable "domain_name" {
   description = "The domain name to use in Route 53."
   type        = string
 }
-variable "zone_id" {
-  description = "Zone ID of your domain"
-  type        = string
-}
 #===========================================================================
 #ACM and R53
 variable "validation_method" {
@@ -182,6 +178,10 @@ variable "record_type" {
 variable "evaluate_target_health" {
   description = "Evaluate target health"
   type        = bool
+}
+variable "zone_id" {
+  description = "Zone ID of your domain"
+  type        = string
 }
 variable "r53_cert_validation_ttl" {
   description = "Route53 cert validation TTL"
