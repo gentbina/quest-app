@@ -72,3 +72,23 @@ module "quest-app" {
     "us-east-1b"
   ]
 }
+
+output "ecs_cluster_id" {
+  description = "The ID of the ECS cluster from the qust-app module"
+  value       = module.quest-app.ecs_cluster_id
+}
+
+output "load_balancer_dns" {
+  description = "The DNS name of the Load Balancer from the qust-app module"
+  value       = module.quest-app.load_balancer_dns
+}
+
+output "route53_record_name" {
+  description = "The name of the Route 53 record from the qust-app module"
+  value       = module.quest-app.route53_record_name
+}
+
+output "certificate_arn" {
+  description = "The ARN of the ACM certificate from the qust-app module"
+  value       = module.quest-app.certificate_arn
+}
