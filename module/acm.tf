@@ -1,6 +1,6 @@
 resource "aws_acm_certificate" "app_cert" {
   domain_name       = var.domain_name
-  validation_method = "DNS"
+  validation_method = var.validation_method
 
   lifecycle {
     create_before_destroy = true
@@ -33,7 +33,7 @@ resource "aws_route53_record" "cert_validation" {
 
   name    = each.value.name
   type    = each.value.type
-  zone_id = "ZFAKQT1VB7ZSE"
+  zone_id = var.zone_id
   records = [each.value.record]
-  ttl     = 60
+  ttl     = var.r53_cert_validation_ttl
 }

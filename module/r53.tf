@@ -1,10 +1,10 @@
 resource "aws_route53_record" "app" {
-  zone_id = "ZFAKQT1VB7ZSE"
+  zone_id = var.zone_id
   name    = var.domain_name
-  type    = "A"
+  type    = var.record_type
   alias {
     name                   = aws_lb.app.dns_name
     zone_id                = aws_lb.app.zone_id
-    evaluate_target_health = true
+    evaluate_target_health = var.evaluate_target_health
   }
 }
