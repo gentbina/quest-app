@@ -62,7 +62,7 @@ The architecture of the deployed resources includes:
 +------------------------+
 ```
 
-![image](https://github.com/gentbina/random-app/assets/54009137/c864e0b2-e123-42ed-8ec3-65d7af6c34ef)
+![image](https://github.com/gentbina/quest-app/assets/54009137/c864e0b2-e123-42ed-8ec3-65d7af6c34ef)
 
 ## Notes
 
