@@ -1,4 +1,4 @@
-module "quest-app" {
+module "random-app" {
   source = "./module"
 
   #ECS
@@ -55,40 +55,40 @@ module "quest-app" {
   r53_cert_validation_ttl = 300
 
   #Providers Block
-  region           = "us-west-2"
+  region           = "us-east-1"
   account_id       = 123456789012
   deploy_role_name = "random-deploy-role"
 
   #VPC
-  vpc_cidr = "192.168.0.0/16"
+  vpc_cidr = "10.0.0.0/16"
 
   subnet_cidrs = [
-    "192.168.1.0/24",
-    "192.168.2.0/24"
+    "10.0.1.0/24",
+    "10.0.2.0/24"
   ]
 
   availability_zones = [
-    "us-west-2a",
-    "us-west-2b"
+    "us-east-1a",
+    "us-east-1b"
   ]
 }
 
 output "ecs_cluster_id" {
   description = "The ID of the ECS cluster from the random module"
-  value       = module.quest-app.ecs_cluster_id
+  value       = module.random-app.ecs_cluster_id
 }
 
 output "load_balancer_dns" {
   description = "The DNS name of the Load Balancer from the random module"
-  value       = module.quest-app.load_balancer_dns
+  value       = module.random-app.load_balancer_dns
 }
 
 output "route53_record_name" {
   description = "The name of the Route 53 record from the random module"
-  value       = module.quest-app.route53_record_name
+  value       = module.random-app.route53_record_name
 }
 
 output "certificate_arn" {
   description = "The ARN of the ACM certificate from the random module"
-  value       = module.quest-app.certificate_arn
+  value       = module.random-app.certificate_arn
 }
