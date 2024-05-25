@@ -4,8 +4,8 @@ module "quest-app" {
   #ECS
   ecs_cluster_name       = "quest-app-cluster"
   ecs_task_family        = "quest-app-task"
-  ecs_task_cpu           = "1024"
-  ecs_task_memory        = "2048"
+  ecs_task_cpu           = "256"
+  ecs_task_memory        = "512"
   ecs_execution_role_arn = "arn:aws:iam::191600387477:role/ecsTaskExecutionRole"
   container_name         = "quest-app"
   container_image        = "191600387477.dkr.ecr.us-east-1.amazonaws.com/quest-app:latest"
@@ -14,7 +14,7 @@ module "quest-app" {
   env_variable           = "SECRET_WORD"
   env_variable_value     = "TwelveFactor"
   ecs_service_name       = "quest-app-service"
-  desired_count          = "2"
+  desired_count          = "1"
   assing_public_ip       = true
 
   #Load Balancer
