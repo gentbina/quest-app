@@ -1,10 +1,6 @@
-# Quest App deployed in ECS Fargate with ALB and TLS - Terraform Example
+# Node JS App deployed in ECS Fargate with ALB and TLS - Terraform Example
 
 This repository contains Terraform configuration files for deploying a containerized Node.js application on Amazon ECS Fargate with an Application Load Balancer (ALB) and TLS enabled.
-
-## URL to a working deployment
-
-https://test.gentbina.com
 
 ## Architecture
 
@@ -65,10 +61,13 @@ The architecture of the deployed resources includes:
 |     (Public Subnets)   |
 +------------------------+
 ```
+
 ![image](https://github.com/gentbina/quest-app/assets/54009137/c864e0b2-e123-42ed-8ec3-65d7af6c34ef)
 
 ## Notes
+
 The node js app has been containerized and pushed into a private repository in ECR
+
 ```
 FROM node:16
 
