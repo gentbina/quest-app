@@ -2,6 +2,10 @@
 
 This repository contains Terraform configuration files for deploying a containerized Node.js application on Amazon ECS Fargate with an Application Load Balancer (ALB) and TLS enabled.
 
+## URL to a working deployment
+
+https://test.gentbina.com
+
 ## Architecture
 
 The architecture of the deployed resources includes:
